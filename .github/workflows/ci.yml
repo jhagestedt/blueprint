@@ -6,4 +6,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: echo "todo"
+    - uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - run: |
+        mvn --batch-mode deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/upload-artifact@v1
+      with:
+        name: api
+        path: api/target
+    - uses: actions/upload-artifact@v1
+      with:
+        name: app
+        path: app/target
+  package:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v1
+      with:
+        name: app
+        path: app/target
+    - run: sudo apt-get install --yes --no-install-recommends libxml-xpath-perl
+    - run: |
+        VERSION=$(xpath -q -e "/project/version/text()" pom.xml)
+        echo "::set-env name=VERSION::${VERSION}"
+    - run: echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u jhagestedt --password-stdin
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: docker build . --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/app:${VERSION}
+    - run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/app:${VERSION}
