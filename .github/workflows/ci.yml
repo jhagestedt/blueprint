@@ -11,11 +11,11 @@ jobs:
     - run: mvn --batch-mode package
     - uses: actions/upload-artifact@v1
       with:
-        name: api-target
+        name: api
         path: api/target
     - uses: actions/upload-artifact@v1
       with:
-        name: app-target
+        name: app
         path: app/target
   package:
     needs: build
@@ -23,6 +23,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v1
       with:
-        name: app-target
+        name: app
+        path: app/target
     - run: ls && ls app
     - run: docker build .
