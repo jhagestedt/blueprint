@@ -1,7 +1,4 @@
 spring:
-  application:
-    name: blueprint
-    version: 0.0.1
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:blueprint
@@ -13,6 +10,16 @@ spring:
       ddl-auto: validate
   liquibase:
     change-log: classpath:db/changelog.yml
+management:
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: /management
 blueprint:
   salt: 123
   pepper: 345
