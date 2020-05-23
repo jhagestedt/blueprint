@@ -1,0 +1,61 @@
+databaseChangeLog:
+- changeSet:
+    id: create-blueprint-table
+    author: jhagestedt
+    changes:
+    - createTable:
+        tableName: blueprint
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              unique: true
+              nullable: false
+              primaryKey: true
+        - column:
+            name: key
+            type: varchar(36)
+            constraints:
+              unique: true
+              nullable: false
+        - column:
+            name: created_at
+            type: datetime
+            constraints:
+              nullable: false
+        - column:
+            name: updated_at
+            type: datetime
+            constraints:
+              nullable: false
+        - column:
+            name: data
+            type: varchar(255)
+        - column:
+            name: salt
+            type: integer
+        - column:
+            name: pepper
+            type: integer
+- changeSet:
+    id: create-blueprint-table-increment
+    author: jhagestedt
+    changes:
+    - addAutoIncrement:
+        tableName: blueprint
+        columnName: id
+        columnDataType: bigint
+        startWith: 1
+        incrementBy: 1
+- changeSet:
+    id: create-blueprint-table-indexes
+    author: jhagestedt
+    changes:
+    - createIndex:
+        tableName: blueprint
+        indexName: idx_blueprint_key
+        columns:
+        - column:
+            name: key
+            type: varchar(64)
