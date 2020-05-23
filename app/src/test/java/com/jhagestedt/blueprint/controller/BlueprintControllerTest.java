@@ -30,8 +30,8 @@ public class BlueprintControllerTest {
       .accept(MediaType.APPLICATION_JSON_VALUE)
       .contentType(MediaType.APPLICATION_JSON_VALUE)
     )
-    .andDo(MockMvcResultHandlers.print())
-    .andExpect(MockMvcResultMatchers.status().isNotFound());
+      .andDo(MockMvcResultHandlers.print())
+      .andExpect(MockMvcResultMatchers.status().isNotFound());
   }
 
   @Test
@@ -39,15 +39,15 @@ public class BlueprintControllerTest {
     mockMvc.perform(MockMvcRequestBuilders
       .get("/api/v1/blueprint/abc")
     )
-    .andDo(MockMvcResultHandlers.print())
-    .andExpect(MockMvcResultMatchers.status().isUnsupportedMediaType());
+      .andDo(MockMvcResultHandlers.print())
+      .andExpect(MockMvcResultMatchers.status().isUnsupportedMediaType());
     mockMvc.perform(MockMvcRequestBuilders
       .get("/api/v1/blueprint/abc")
       .accept(MediaType.APPLICATION_ATOM_XML_VALUE)
       .contentType(MediaType.APPLICATION_ATOM_XML_VALUE)
     )
-    .andDo(MockMvcResultHandlers.print())
-    .andExpect(MockMvcResultMatchers.status().isUnsupportedMediaType());
+      .andDo(MockMvcResultHandlers.print())
+      .andExpect(MockMvcResultMatchers.status().isUnsupportedMediaType());
   }
 
 }
