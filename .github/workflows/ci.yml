@@ -28,7 +28,8 @@ jobs:
         name: app
         path: app/target
     - run: sudo apt-get install --yes --no-install-recommends libxml-xpath-perl
-    - run: export VERSION=$(xpath -q -e "/project/version/text()" pom.xml)
     - run: |
-        docker build . \
-        --tag docker.pkg.github.com/${GITHUB_REPOSITORY}:${VERSION}
+        VERSION=$(xpath -q -e "/project/version/text()" pom.xml)
+        echo "::set-env name=VERSION::${VERSION}"
+    - run: |
+        docker build . --tag docker.pkg.github.com/${GITHUB_REPOSITORY}:${VERSION}
