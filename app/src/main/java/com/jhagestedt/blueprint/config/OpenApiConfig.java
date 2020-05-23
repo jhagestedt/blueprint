@@ -15,6 +15,11 @@ public class OpenApiConfig {
   @Value("${spring.application.version}")
   private String version;
 
+  /**
+   * Configure the OpenApi bean.
+   *
+   * @return the OpenApi bean.
+   */
   @Bean
   public OpenAPI openApi() {
     return new OpenAPI()
