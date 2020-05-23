@@ -37,5 +37,5 @@ jobs:
     - run: echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u jhagestedt --password-stdin
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: docker build . --tag docker.pkg.github.com/${GITHUB_REPOSITORY}:${VERSION}
-    - run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}:${VERSION}
+    - run: docker build . --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/app:${VERSION}
+    - run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/app:${VERSION}
