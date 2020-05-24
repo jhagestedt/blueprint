@@ -23,10 +23,11 @@
     <!-- charset -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <!-- frameworks -->
+    <!-- dependencies -->
     <liquibase.version>3.9.0</liquibase.version>
     <!-- sonar -->
-    <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+    <sonar.project>blueprint-app</sonar.project>
+    <sonar.projectKey>${sonar.organization}_${sonar.project}</sonar.projectKey>
   </properties>
 
   <dependencies>
@@ -101,6 +102,24 @@
             <goals>
               <goal>build-info</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <phase>verify</phase>
           </execution>
         </executions>
       </plugin>
