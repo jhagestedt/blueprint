@@ -12,6 +12,9 @@
   <description>Blueprint project.</description>
 
   <properties>
+    <!-- sonar -->
+    <sonar.projectKey>jhagestedt_blueprint</sonar.projectKey>
+    <sonar.organization>jhagestedt</sonar.organization>
     <!-- java -->
     <java.version>11</java.version>
     <maven.compiler.source>11</maven.compiler.source>
@@ -59,7 +62,6 @@
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>GitHub Packages</name>
       <url>https://maven.pkg.github.com/jhagestedt/blueprint</url>
     </repository>
   </distributionManagement>
