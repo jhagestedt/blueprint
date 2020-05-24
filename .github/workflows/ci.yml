@@ -24,8 +24,8 @@ jobs:
       with:
         java-version: 11
     - run: |
-        mvn --batch-mode deploy
-        mvn org.sonarsource.scanner.maven:sonar \
+        mvn --batch-mode --settings .mvn/settings.xml deploy
+        mvn --batch-mode --settings .mvn/settings.xml org.sonarsource.scanner.maven:sonar \
         -Dsonar.login=${SONAR_TOKEN}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

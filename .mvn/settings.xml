@@ -1,0 +1,18 @@
+<settings>
+  <pluginGroups>
+    <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+  </pluginGroups>
+  <profiles>
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <sonar.projectKey>jhagestedt_blueprint</sonar.projectKey>
+        <sonar.organization>jhagestedt</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+      </properties>
+    </profile>
+  </profiles>
+</settings>
