@@ -24,8 +24,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- sonar -->
-    <sonar.project>blueprint-api</sonar.project>
-    <sonar.projectKey>${sonar.organization}_${sonar.project}</sonar.projectKey>
+    <sonar.projectKey>${sonar.organization}_${project.artifactId}</sonar.projectKey>
   </properties>
 
   <dependencies>

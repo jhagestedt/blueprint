@@ -30,8 +30,7 @@
     <plugin.jacoco.version>0.8.4</plugin.jacoco.version>
     <!-- sonar -->
     <sonar.organization>jhagestedt</sonar.organization>
-    <sonar.project>blueprint</sonar.project>
-    <sonar.projectKey>${sonar.organization}_${sonar.project}</sonar.projectKey>
+    <sonar.projectKey>${sonar.organization}_${project.artifactId}</sonar.projectKey>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
