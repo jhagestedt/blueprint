@@ -34,6 +34,7 @@ jobs:
         -Dsonar.host.url=${SONAR_URL} \
         -Dsonar.organization=${GITHUB_REPOSITORY_OWNER}
       env:
+        SONAR_URL: https://sonarcloud.io
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/upload-artifact@v1
