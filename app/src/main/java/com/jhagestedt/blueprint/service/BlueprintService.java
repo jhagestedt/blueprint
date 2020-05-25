@@ -7,19 +7,19 @@ import com.jhagestedt.blueprint.exception.BlueprintException;
 import com.jhagestedt.blueprint.properties.BlueprintProperties;
 import com.jhagestedt.blueprint.repository.BlueprintRepository;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class BlueprintService {
 
-  @Autowired
-  private BlueprintRepository blueprintRepository;
-  @Autowired
-  private BlueprintProperties blueprintProperties;
+  private final BlueprintRepository blueprintRepository;
+
+  private final BlueprintProperties blueprintProperties;
 
   /**
    * Create a blueprint model.

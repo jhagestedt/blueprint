@@ -3,16 +3,16 @@ package com.jhagestedt.blueprint.config;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@RequiredArgsConstructor
 @Configuration
 public class OpenApiConfig {
 
-  @Autowired
-  private BuildProperties buildProperties;
+  private final BuildProperties buildProperties;
 
   /**
    * Configure the OpenApi bean.
