@@ -28,8 +28,13 @@ jobs:
     - run: mvn --batch-mode deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: mvn --batch-mode verify sonar:sonar -Dsonar.login=${SONAR_TOKEN}
+    - run: |
+        mvn --batch-mode verify sonar:sonar \
+        -Dsonar.login=${SONAR_TOKEN} \
+        -Dsonar.host.url=${SONAR_URL} \
+        -Dsonar.organization=${GITHUB_REPOSITORY_OWNER}
       env:
+        SONAR_URL: https://sonarcloud.io
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/upload-artifact@v1
@@ -51,10 +56,12 @@ jobs:
         path: app/target
     - run: sudo apt-get install --yes --no-install-recommends libxml-xpath-perl
     - run: |
+        ARTIFACT_ID=$(xpath -q -e "/project/artifactId/text()" pom.xml)
+        echo "::set-env name=ARTIFACT_ID::${ARTIFACT_ID}"
         VERSION=$(xpath -q -e "/project/version/text()" pom.xml)
         echo "::set-env name=VERSION::${VERSION}"
-    - run: echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u jhagestedt --password-stdin
+    - run: echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY_OWNER} --password-stdin
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: docker build . --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/app:${VERSION}
-    - run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/app:${VERSION}
+    - run: docker build --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/${ARTIFACT_ID}:${VERSION} .
+    - run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/${ARTIFACT_ID}:${VERSION}
