@@ -26,9 +26,9 @@ jobs:
       with:
         java-version: 11
     - run: mvn --batch-mode package
-      if: ${{ github.event == 'pull_request' }}
+      if: ${{ github.event_name == 'pull_request' }}
     - run: mvn --batch-mode deploy
-      if: ${{ github.event == 'push' }}
+      if: ${{ github.event_name == 'push' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: |
@@ -50,7 +50,7 @@ jobs:
         path: app/target
   package:
     needs: build
-    if: ${{ github.event == 'push' }}
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
