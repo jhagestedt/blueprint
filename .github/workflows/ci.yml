@@ -3,6 +3,11 @@ on:
   push:
     branches:
     - master
+  pull_request:
+    types:
+    - opened
+    - synchronize
+    - reopened
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +25,10 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: 11
+    - run: mvn --batch-mode package
+      if: ${{ github.event == 'pull_request' }}
     - run: mvn --batch-mode deploy
+      if: ${{ github.event == 'push' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: |
@@ -42,6 +50,7 @@ jobs:
         path: app/target
   package:
     needs: build
+    if: ${{ github.event == 'push' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
