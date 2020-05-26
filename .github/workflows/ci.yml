@@ -50,7 +50,6 @@ jobs:
         path: app/target
   package:
     needs: build
-    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -58,14 +57,20 @@ jobs:
       with:
         name: app
         path: app/target
-    - run: sudo apt-get install --yes --no-install-recommends libxml-xpath-perl
     - run: |
+        sudo apt-get install --yes --no-install-recommends libxml-xpath-perl
         ARTIFACT_ID=$(xpath -q -e "/project/artifactId/text()" pom.xml)
         echo "::set-env name=ARTIFACT_ID::${ARTIFACT_ID}"
         VERSION=$(xpath -q -e "/project/version/text()" pom.xml)
         echo "::set-env name=VERSION::${VERSION}"
+      if: ${{ github.event_name == 'push' }}
     - run: echo ${GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY_OWNER} --password-stdin
+      if: ${{ github.event_name == 'push' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: docker build .
+      if: ${{ github.event_name == 'pull_request' }}
     - run: docker build --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/${ARTIFACT_ID}:${VERSION} .
+      if: ${{ github.event_name == 'push' }}
     - run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/${ARTIFACT_ID}:${VERSION}
+      if: ${{ github.event_name == 'push' }}
