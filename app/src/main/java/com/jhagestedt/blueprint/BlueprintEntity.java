@@ -1,4 +1,4 @@
-package com.jhagestedt.blueprint.domain;
+package com.jhagestedt.blueprint;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

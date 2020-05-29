@@ -1,6 +1,5 @@
-package com.jhagestedt.blueprint.repository;
+package com.jhagestedt.blueprint;
 
-import com.jhagestedt.blueprint.domain.BlueprintEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
