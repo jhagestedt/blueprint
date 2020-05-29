@@ -1,7 +1,8 @@
-package com.jhagestedt.blueprint.repository;
+package com.jhagestedt.blueprint;
 
 import com.jhagestedt.blueprint.BlueprintApplication;
-import com.jhagestedt.blueprint.domain.BlueprintEntity;
+import com.jhagestedt.blueprint.BlueprintEntity;
+import com.jhagestedt.blueprint.BlueprintRepository;
 import java.util.Optional;
 import java.util.UUID;
 import org.junit.Assert;

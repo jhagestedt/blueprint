@@ -1,9 +1,6 @@
-package com.jhagestedt.blueprint.controller;
+package com.jhagestedt.blueprint;
 
-import com.jhagestedt.blueprint.BlueprintRequest;
-import com.jhagestedt.blueprint.BlueprintResponse;
 import com.jhagestedt.blueprint.api.BlueprintApi;
-import com.jhagestedt.blueprint.service.BlueprintService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

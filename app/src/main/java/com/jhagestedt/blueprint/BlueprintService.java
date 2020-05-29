@@ -1,11 +1,6 @@
-package com.jhagestedt.blueprint.service;
+package com.jhagestedt.blueprint;
 
-import com.jhagestedt.blueprint.BlueprintRequest;
-import com.jhagestedt.blueprint.BlueprintResponse;
-import com.jhagestedt.blueprint.domain.BlueprintEntity;
 import com.jhagestedt.blueprint.exception.BlueprintException;
-import com.jhagestedt.blueprint.properties.BlueprintProperties;
-import com.jhagestedt.blueprint.repository.BlueprintRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

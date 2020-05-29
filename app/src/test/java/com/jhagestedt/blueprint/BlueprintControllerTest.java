@@ -1,4 +1,4 @@
-package com.jhagestedt.blueprint.controller;
+package com.jhagestedt.blueprint;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jhagestedt.blueprint.BlueprintApplication;

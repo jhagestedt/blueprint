@@ -1,4 +1,4 @@
-package com.jhagestedt.blueprint.properties;
+package com.jhagestedt.blueprint;
 
 import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
