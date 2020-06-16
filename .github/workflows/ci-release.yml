@@ -1,0 +1,19 @@
+name: ci-release
+on:
+  release:
+    types:
+    - created
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: environment
+      run: npm install github-release-notes -g
+    - name: generate release notes
+      run: |
+        TAG=${GITHUB_REF/refs\/tags\/}
+        gren release --override --tags ${TAG}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GREN_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
