@@ -29,7 +29,10 @@ jobs:
         export VERSION=${VERSION//-SNAPSHOT}-$(git rev-parse --short ${GITHUB_SHA})
         echo "::set-env name=VERSION::${VERSION}"
     - name: mvn version
-      run: mvn --batch-mode versions:set -DgenerateBackupPoms=false -DnewVersion=${VERSION}
+      run: |
+        mvn --batch-mode versions:set --file api/pom.xml -DnewVersion=${VERSION}
+        mvn --batch-mode versions:set --file app/pom.xml -DnewVersion=${VERSION}
+        mvn --batch-mode versions:set --file pom.xml -DnewVersion=${VERSION}
     - name: mvn deploy
       run: mvn --batch-mode deploy
       env:
