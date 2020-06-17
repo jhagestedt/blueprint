@@ -1,4 +1,4 @@
-name: ci-release
+name: ci-release-notes
 on:
   release:
     types:
@@ -8,11 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: generate release notes
+    - name: release notes
       run: |
-        echo ${GITHUB_REF}
         TAG=${GITHUB_REF/refs\/tags\/}
-        echo ${TAG}
         npx github-release-notes release --override --tags ${TAG}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
