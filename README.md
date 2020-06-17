@@ -6,3 +6,4 @@
 [![bugs](https://sonarcloud.io/api/project_badges/measure?project=jhagestedt_blueprint&metric=bugs)](https://sonarcloud.io/dashboard?id=jhagestedt_blueprint)
 
 This repository provides a simple blueprint for Spring Boot applications packaged with Maven.
+Feel free to contribute via pull requests.
