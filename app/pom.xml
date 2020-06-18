@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>blueprint-app</artifactId>
-  <version>0.0.8-SNAPSHOT</version>
+  <version>0.0.9</version>
   <packaging>jar</packaging>
   <name>blueprint-app</name>
   <description>Blueprint app project.</description>
@@ -12,7 +12,7 @@
   <parent>
     <groupId>com.jhagestedt</groupId>
     <artifactId>blueprint</artifactId>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.9</version>
   </parent>
 
   <properties>
