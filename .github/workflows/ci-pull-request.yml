@@ -23,6 +23,6 @@ jobs:
       with:
         java-version: 11
     - name: mvn package
-      run: mvn --batch-mode package
+      run: mvn package --batch-mode
     - name: docker build
       run: docker build .
