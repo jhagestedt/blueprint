@@ -3,7 +3,6 @@ on:
   push:
     branches:
     - master
-    - release
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,16 +30,16 @@ jobs:
         echo "::set-env name=VERSION::${VERSION}"
     - name: mvn version
       run: |
-        mvn --batch-mode versions:set --file api/pom.xml -DnewVersion=${VERSION}
-        mvn --batch-mode versions:set --file app/pom.xml -DnewVersion=${VERSION}
-        mvn --batch-mode versions:set --file pom.xml -DnewVersion=${VERSION}
+        mvn versions:set --batch-mode --file api/pom.xml -DnewVersion=${VERSION}
+        mvn versions:set --batch-mode --file app/pom.xml -DnewVersion=${VERSION}
+        mvn versions:set --batch-mode --file pom.xml -DnewVersion=${VERSION}
     - name: mvn deploy
-      run: mvn --batch-mode deploy
+      run: mvn deploy --batch-mode
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: mvn sonar
       run: |
-        mvn --batch-mode verify sonar:sonar \
+        mvn verify sonar:sonar --batch-mode \
         -Dsonar.login=${SONAR_TOKEN} \
         -Dsonar.host.url=${SONAR_URL} \
         -Dsonar.organization=${GITHUB_REPOSITORY_OWNER} \
