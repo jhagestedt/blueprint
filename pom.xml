@@ -6,7 +6,7 @@
 
   <groupId>com.jhagestedt</groupId>
   <artifactId>blueprint</artifactId>
-  <version>0.0.9</version>
+  <version>0.0.9-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>blueprint</name>
   <description>Blueprint project.</description>
