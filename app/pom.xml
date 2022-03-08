@@ -24,7 +24,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- dependencies -->
-    <liquibase.version>3.9.0</liquibase.version>
+    <liquibase.version>4.8.0</liquibase.version>
     <!-- sonar -->
     <sonar.projectKey>${sonar.organization}_${project.artifactId}</sonar.projectKey>
   </properties>
